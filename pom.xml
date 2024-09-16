@@ -1,18 +1,45 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>fr.codebusters.valocb</groupId>
-  <artifactId>valocb</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>valocb</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <groupId>fr.codebusters.valocb</groupId>
+    <artifactId>valocb</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>valocb</name>
+    <url>http://maven.apache.org</url>
+
+    <!-- Dépendances du projet -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Configuration Java 17 -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source> <!-- Version Java source -->
+        <maven.compiler.target>17</maven.compiler.target> <!-- Version Java cible -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Encodage UTF-8 -->
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Plugin de compilation Maven pour Java -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Version du plugin de compilation -->
+                <configuration>
+                    <source>17</source> <!-- Version source Java -->
+                    <target>17</target> <!-- Version cible Java -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
