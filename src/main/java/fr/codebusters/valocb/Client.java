@@ -8,14 +8,14 @@ import java.util.Map;
  */
 public class Client {
 
-    /** Le nom du client. */
     private String name;
-
-    /** Une map: (produits, quantités). */
     private Map<Product, Integer> products;
 
     /**
-     * Constructeur.
+     * Constructeur de la classe {@code Client}.
+     *
+     * @param name     Le nom du client.
+     * @param products Une map: (produits, quantités).
      */
     public Client(String name, Map<Product, Integer> products) {
         this.name = name;

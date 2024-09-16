@@ -11,14 +11,14 @@ import java.util.Objects;
  */
 public class Product {
 
-    /** Le nom du produit. */
     private String name;
-
-    /** La liste des sous-jacents (underlyings) associés au produit. */
     private List<Underlying> underlings;
 
     /**
-     * Constructeur
+     * Constructeur de la classe {@code Product}.
+     *
+     * @param name       Le nom du produit.
+     * @param underlings La liste des sous-jacents associés à ce produit.
      */
     public Product(String name, List<Underlying> underlings) {
         this.name = name;

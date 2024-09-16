@@ -9,14 +9,14 @@ import java.util.Map;
  */
 public class Portfolio {
 
-    /** Le nom du portefeuille. */
     private String name;
-
-    /** Une map des produits dans le portefeuille et leurs quantités. */
     private Map<Product, Integer> products;
 
     /**
-     * Constructeur
+     * Constructeur de la classe {@code Portfolio}.
+     *
+     * @param name     Le nom du portefeuille.
+     * @param products Une map des produits dans le portefeuille et leurs quantités.
      */
     public Portfolio(String name, Map<Product, Integer> products) {
         this.name = name;

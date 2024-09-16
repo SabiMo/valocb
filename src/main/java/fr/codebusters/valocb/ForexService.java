@@ -16,6 +16,9 @@ public class ForexService {
     private static ForexService instance;
     private Map<String, Double> forexRates = new HashMap<>();
 
+    /**
+     * Constructeur privé.
+     */
     private ForexService() {
         loadForexRates();
     }
