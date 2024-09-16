@@ -24,8 +24,6 @@ public class ProductClient {
     }
 
     /**
-     * Retourne le nom du produit.
-     *
      * @return Le nom du produit.
      */
     public String getProduct() {
@@ -33,8 +31,6 @@ public class ProductClient {
     }
 
     /**
-     * Retourne le nom du client.
-     *
      * @return Le nom du client.
      */
     public String getClient() {
@@ -42,8 +38,6 @@ public class ProductClient {
     }
 
     /**
-     * Retourne la quantité de produits détenue par le client.
-     *
      * @return La quantité détenue.
      */
     public int getQuantity() {

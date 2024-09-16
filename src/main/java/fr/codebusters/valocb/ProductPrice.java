@@ -29,8 +29,6 @@ public class ProductPrice {
     }
 
     /**
-     * Retourne le nom du portefeuille.
-     *
      * @return Le nom du portefeuille.
      */
     public String getPortfolio() {
@@ -38,8 +36,6 @@ public class ProductPrice {
     }
 
     /**
-     * Retourne le nom du produit.
-     *
      * @return Le nom du produit.
      */
     public String getProduct() {
@@ -47,8 +43,6 @@ public class ProductPrice {
     }
 
     /**
-     * Retourne le nom de l'underlying.
-     *
      * @return Le nom de l'underlying.
      */
     public String getUnderlying() {
@@ -56,8 +50,6 @@ public class ProductPrice {
     }
 
     /**
-     * Retourne la devise de l'underlying.
-     *
      * @return La devise de l'underlying.
      */
     public String getCurrency() {
@@ -65,8 +57,6 @@ public class ProductPrice {
     }
 
     /**
-     * Retourne le prix de l'underlying.
-     *
      * @return Le prix de l'underlying.
      */
     public double getPrice() {

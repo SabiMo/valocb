@@ -18,10 +18,7 @@ public class Product {
     private List<Underlying> underlings;
 
     /**
-     * Constructeur de la classe {@code Product}.
-     *
-     * @param name       Le nom du produit.
-     * @param underlings La liste des sous-jacents associés à ce produit.
+     * Constructeur
      */
     public Product(String name, List<Underlying> underlings) {
         this.name = name;
@@ -29,8 +26,6 @@ public class Product {
     }
 
     /**
-     * Retourne le nom du produit.
-     *
      * @return Le nom du produit.
      */
     public String getName() {
@@ -38,17 +33,6 @@ public class Product {
     }
 
     /**
-     * Définit le nom du produit.
-     *
-     * @param name Le nouveau nom du produit.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Retourne la liste des sous-jacents associés au produit.
-     *
      * @return Une liste d'objets {@code Underlying} représentant les sous-jacents
      *         du produit.
      */
@@ -57,23 +41,7 @@ public class Product {
     }
 
     /**
-     * Définit la liste des sous-jacents associés au produit.
-     *
-     * @param underlings La nouvelle liste des sous-jacents.
-     */
-    public void setUnderlings(List<Underlying> underlings) {
-        this.underlings = underlings;
-    }
-
-    /**
-     * Calcule le prix total du produit en fonction des prix de ses sous-jacents
-     * et des taux de conversion fournis par {@code ForexService}.
-     *
-     * @param forexService   Le service utilisé pour obtenir les taux de change
-     *                       entre les devises.
-     * @param targetCurrency La devise cible dans laquelle le prix doit être calculé
-     *                       (en général "EUR").
-     * @return Le prix total du produit dans la devise spécifiée.
+     * @return Le prix total du produit en euro.
      */
     public double calculatePrice() {
         double totalPrice = 0;
@@ -84,13 +52,6 @@ public class Product {
         return totalPrice;
     }
 
-    /**
-     * Vérifie l'égalité entre deux objets {@code Product}.
-     * Deux produits sont considérés égaux s'ils ont le même nom.
-     *
-     * @param o L'objet à comparer.
-     * @return {@code true} si les objets sont égaux, {@code false} sinon.
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -103,11 +64,6 @@ public class Product {
         return this.name.equals(product.name);
     }
 
-    /**
-     * Calcule le hash code du produit basé sur son nom.
-     *
-     * @return Le hash code du produit.
-     */
     @Override
     public int hashCode() {
         return Objects.hash(this.name);
