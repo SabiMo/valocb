@@ -2,14 +2,14 @@ package fr.codebusters.valocb.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 import fr.codebusters.valocb.parsers.ForexService;
+import lombok.Data;
 
 /**
  * La classe {@code Product} représente un produit financier.
  * Chaque produit a un nom et une liste d'underlyings.
  */
+@Data
 public class Product {
 
     private String name;
@@ -31,21 +31,6 @@ public class Product {
     }
 
     /**
-     * @return Le nom du produit.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return Une liste d'objets {@code Underlying} représentant les sous-jacents
-     *         du produit.
-     */
-    public List<Underlying> getUnderlyings() {
-        return underlyings;
-    }
-
-    /**
      * Ajoute un produit avec une quantité à ce client.
      *
      * @param underlying Le sous-jacent.
@@ -64,22 +49,5 @@ public class Product {
             totalPrice += underlying.getPrice() * conversionRate;
         }
         return totalPrice;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        Product product = (Product) o;
-        return this.name.equals(product.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.name);
     }
 }

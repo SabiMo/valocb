@@ -2,13 +2,14 @@ package fr.codebusters.valocb.entities;
 
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Objects;
+import lombok.Data;
 
 /**
  * La classe {@code Portfolio} représente un portefeuille contenant plusieurs
  * produits.
  * Chaque produit est associé à une quantité spécifique.
  */
+@Data
 public class Portfolio {
 
     private String name;
@@ -30,20 +31,6 @@ public class Portfolio {
     }
 
     /**
-     * @return Le nom du portefeuille.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return Les produits.
-     */
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    /**
      * Ajoute un produit avec une quantité à ce client.
      *
      * @param product Le produit.
@@ -61,22 +48,5 @@ public class Portfolio {
             totalPrice += product.calculatePrice();
         }
         return totalPrice;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        Portfolio portfolio = (Portfolio) o;
-        return this.name.equals(portfolio.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.name);
     }
 }

@@ -2,12 +2,13 @@ package fr.codebusters.valocb.entities;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+import lombok.Data;
 
 /**
  * La classe {@code Client} représente un client qui détient plusieurs produits
  * avec des quantités spécifiques.
  */
+@Data
 public class Client {
 
     private String name;
@@ -26,20 +27,6 @@ public class Client {
         } else {
             this.products = products;
         }
-    }
-
-    /**
-     * @return Le nom du client.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @return Une map: (produit, quantité).
-     */
-    public Map<Product, Integer> getProducts() {
-        return products;
     }
 
     /**
@@ -63,22 +50,5 @@ public class Client {
             totalCapital += product.calculatePrice() * quantity;
         }
         return totalCapital;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        Client client = (Client) o;
-        return this.name.equals(client.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.name);
     }
 }
