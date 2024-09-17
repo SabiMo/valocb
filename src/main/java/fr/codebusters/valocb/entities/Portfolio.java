@@ -1,0 +1,82 @@
+package fr.codebusters.valocb.entities;
+
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Objects;
+
+/**
+ * La classe {@code Portfolio} représente un portefeuille contenant plusieurs
+ * produits.
+ * Chaque produit est associé à une quantité spécifique.
+ */
+public class Portfolio {
+
+    private String name;
+    private Set<Product> products;
+
+    /**
+     * Constructeur de la classe {@code Portfolio}.
+     *
+     * @param name     Le nom du portefeuille.
+     * @param products Une map des produits dans le portefeuille et leurs quantités.
+     */
+    public Portfolio(String name, Set<Product> products) {
+        this.name = name;
+        if (products == null) {
+            this.products = new HashSet<>();
+        } else {
+            this.products = products;
+        }
+    }
+
+    /**
+     * @return Le nom du portefeuille.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return Les produits.
+     */
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    /**
+     * Ajoute un produit avec une quantité à ce client.
+     *
+     * @param product Le produit.
+     */
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
+
+    /**
+     * @return Le prix total du portefeuille en euro.
+     */
+    public double calculateTotalPrice() {
+        double totalPrice = 0;
+        for (Product product : products) {
+            totalPrice += product.calculatePrice();
+        }
+        return totalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Portfolio portfolio = (Portfolio) o;
+        return this.name.equals(portfolio.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
+}

@@ -1,6 +1,8 @@
-package fr.codebusters.valocb;
+package fr.codebusters.valocb.entities;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * La classe {@code Client} représente un client qui détient plusieurs produits
@@ -19,7 +21,11 @@ public class Client {
      */
     public Client(String name, Map<Product, Integer> products) {
         this.name = name;
-        this.products = products;
+        if (products == null) {
+            this.products = new HashMap<>();
+        } else {
+            this.products = products;
+        }
     }
 
     /**
@@ -37,6 +43,16 @@ public class Client {
     }
 
     /**
+     * Ajoute un produit avec une quantité à ce client.
+     *
+     * @param product  Le produit.
+     * @param quantity Sa quantité.
+     */
+    public void addProduct(Product product, int quantity) {
+        this.products.put(product, quantity);
+    }
+
+    /**
      * @return Le capital total du client en euro.
      */
     public double calculateCapital() {
@@ -47,5 +63,22 @@ public class Client {
             totalCapital += product.calculatePrice() * quantity;
         }
         return totalCapital;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Client client = (Client) o;
+        return this.name.equals(client.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
     }
 }

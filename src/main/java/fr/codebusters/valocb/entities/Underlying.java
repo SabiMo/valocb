@@ -1,4 +1,4 @@
-package fr.codebusters.valocb;
+package fr.codebusters.valocb.entities;
 
 /**
  * La classe {@code Underlying} représente un sous-jacent d'un produit
