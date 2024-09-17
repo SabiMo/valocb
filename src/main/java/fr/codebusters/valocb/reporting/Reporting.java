@@ -24,7 +24,7 @@ public class Reporting {
             writer.append("PTF,price\n");
 
             for (Portfolio portfolio : portfolios) {
-                double portfolioPrice = portfolio.calculateTotalPrice();
+                double portfolioPrice = portfolio.price();
                 writer.append(portfolio.getName())
                         .append(",")
                         .append(String.valueOf(portfolioPrice))
@@ -44,7 +44,7 @@ public class Reporting {
         writer.append("Client,capital\n");
 
         for (Client client : clients) {
-            double clientCapital = client.calculateCapital();
+            double clientCapital = client.capital();
             writer.append(client.getName())
                     .append(",")
                     .append(String.valueOf(clientCapital))

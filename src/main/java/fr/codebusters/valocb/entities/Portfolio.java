@@ -2,6 +2,7 @@ package fr.codebusters.valocb.entities;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Objects;
 import lombok.Data;
 
 /**
@@ -42,11 +43,28 @@ public class Portfolio {
     /**
      * @return Le prix total du portefeuille en euro.
      */
-    public double calculateTotalPrice() {
+    public double price() {
         double totalPrice = 0;
         for (Product product : products) {
-            totalPrice += product.calculatePrice();
+            totalPrice += product.price();
         }
         return totalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Portfolio portfolio = (Portfolio) o;
+        return this.name.equals(portfolio.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
     }
 }

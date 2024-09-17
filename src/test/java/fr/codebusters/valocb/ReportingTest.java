@@ -53,14 +53,14 @@ public class ReportingTest {
 
             // Vérifier les données
             String[] expectedLines = {
-                    "C2,64600.0",
-                    "C1,990.0",
                     "C4,350.0",
                     "C5,87610.0",
+                    "C6,13500.0",
                     "C7,34400.0",
                     "C8,57600.0",
-                    "C3,36250.0",
-                    "C6,13500.0"
+                    "C1,990.0",
+                    "C2,64600.0",
+                    "C3,36250.0"
             };
 
             for (String expectedLine : expectedLines) {

@@ -1,5 +1,6 @@
 package fr.codebusters.valocb.entities;
 
+import java.util.Objects;
 import lombok.Data;
 
 /**
@@ -27,4 +28,20 @@ public class Underlying {
         this.price = price;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Underlying underlying = (Underlying) o;
+        return this.name.equals(underlying.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
 }

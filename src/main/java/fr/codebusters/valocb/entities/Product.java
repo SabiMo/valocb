@@ -2,6 +2,7 @@ package fr.codebusters.valocb.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import fr.codebusters.valocb.parsers.ForexService;
 import lombok.Data;
 
@@ -42,12 +43,29 @@ public class Product {
     /**
      * @return Le prix total du produit en euro.
      */
-    public double calculatePrice() {
+    public double price() {
         double totalPrice = 0;
         for (Underlying underlying : underlyings) {
             double conversionRate = ForexService.getInstance().getConversionRate(underlying.getCurrency());
             totalPrice += underlying.getPrice() * conversionRate;
         }
         return totalPrice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || this.getClass() != o.getClass()) {
+            return false;
+        }
+        Product product = (Product) o;
+        return this.name.equals(product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
     }
 }
