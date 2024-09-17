@@ -35,7 +35,8 @@ Deux fichiers CSV doivent être générés :
 3. **Le prix des produits par client en EUR**  
    Le capital d’un client est la somme du prix des produits qu'il détient multiplié par les quantités.
 
-### Contraintes Techniques
+### Stack Techniques
 
 - Java 17
-- Tests unitaires > 80%
+- maven
+- JUnit
