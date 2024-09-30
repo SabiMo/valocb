@@ -24,6 +24,10 @@ Deux fichiers CSV doivent être générés :
 - `Reporting-portfolio.csv` : contient les prix des portefeuilles (colonnes PTF et price)
 - `Reporting-client.csv` : contient les capitaux des clients (colonnes Client et capital)
 
+### Launch
+
+- cmd : `java -jar valocb.jar -i <input_directory=src/main/resources> -o <output_directory=reporting>`
+
 ### Exemple de Calculs
 
 1. **Prix d'un produit en EUR**  
