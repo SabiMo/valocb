@@ -43,10 +43,10 @@ public class Product {
     /**
      * @return Le prix total du produit en euro.
      */
-    public double price() {
+    public double price(ForexService forexService) {
         double totalPrice = 0;
         for (Underlying underlying : underlyings) {
-            double conversionRate = ForexService.getInstance().getConversionRate(underlying.getCurrency());
+            double conversionRate = forexService.getConversionRate(underlying.getCurrency());
             totalPrice += underlying.getPrice() * conversionRate;
         }
         return totalPrice;

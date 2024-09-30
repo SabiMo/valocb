@@ -1,9 +1,11 @@
 package fr.codebusters.valocb.parsers;
 
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,14 +16,17 @@ import fr.codebusters.valocb.exceptions.BadFileContentException;
  * vers EUR.
  */
 public class ForexService {
+    private static final Logger logger = Logger.getLogger(PriceService.class.getName());
 
+    private String path;
     private static ForexService instance;
     private Map<String, Double> forexRates = new HashMap<>();
 
     /**
      * Constructeur privé.
      */
-    private ForexService() {
+    private ForexService(String path) {
+        this.path = path;
         try {
             loadForexRates();
         } catch (IOException e) {
@@ -34,9 +39,9 @@ public class ForexService {
     /**
      * @return L'instance unique de ForexService.
      */
-    public static synchronized ForexService getInstance() {
+    public static ForexService getInstance(String path) {
         if (instance == null) {
-            instance = new ForexService();
+            instance = new ForexService(path);
         }
         return instance;
     }
@@ -47,17 +52,27 @@ public class ForexService {
      * EUR).
      */
     private void loadForexRates() throws IOException, BadFileContentException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("Forex.csv");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        logger.setLevel(Level.ALL);
+        logger.info("Lecture du fichier" + path + "/Forex.csv.");
+
+        String file = path + "/Forex.csv";
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+
+        logger.info("Lecture réussite.");
 
         String line = reader.readLine();
 
         if (line.split(",").length != 3) {
+            reader.close();
             throw new BadFileContentException("Le fichier ne contient pas le nombre attendu de colonnes");
         }
 
         forexRates.put("EUR", 1.0);
         while ((line = reader.readLine()) != null) {
+            if (line.split(",").length != 3) {
+                reader.close();
+                throw new BadFileContentException("Le fichier ne contient pas le nombre attendu de colonnes");
+            }
             String[] tokens = line.split(",");
             String fromCurrency = tokens[0].trim();
             String toCurrency = tokens[1].trim();
@@ -70,6 +85,7 @@ public class ForexService {
             }
         }
 
+        reader.close();
     }
 
     /**

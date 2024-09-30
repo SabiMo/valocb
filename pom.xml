@@ -57,10 +57,25 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version> <!-- Version du plugin de compilation -->
+                <version>3.8.1</version>
                 <configuration>
                     <source>17</source> <!-- Version source Java -->
                     <target>17</target> <!-- Version cible Java -->
+                </configuration>
+            </plugin>
+            
+            <!-- Plugin Maven pour la création du JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version> <!-- Version du plugin -->
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>fr.codebusters.valocb.Main</mainClass> <!-- Remplace par ta classe principale -->
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>

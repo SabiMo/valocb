@@ -1,6 +1,9 @@
 package fr.codebusters.valocb.entities;
 
 import java.util.Set;
+
+import fr.codebusters.valocb.parsers.ForexService;
+
 import java.util.HashSet;
 import java.util.Objects;
 import lombok.Data;
@@ -8,7 +11,6 @@ import lombok.Data;
 /**
  * La classe {@code Portfolio} représente un portefeuille contenant plusieurs
  * produits.
- * Chaque produit est associé à une quantité spécifique.
  */
 @Data
 public class Portfolio {
@@ -43,10 +45,10 @@ public class Portfolio {
     /**
      * @return Le prix total du portefeuille en euro.
      */
-    public double price() {
+    public double price(ForexService forexService) {
         double totalPrice = 0;
         for (Product product : products) {
-            totalPrice += product.price();
+            totalPrice += product.price(forexService);
         }
         return totalPrice;
     }

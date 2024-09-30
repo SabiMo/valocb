@@ -2,10 +2,12 @@ package fr.codebusters.valocb.parsers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
+
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import fr.codebusters.valocb.entities.Underlying;
 import fr.codebusters.valocb.exceptions.BadFileContentException;
@@ -17,13 +19,16 @@ import fr.codebusters.valocb.entities.Product;
  * Service Singleton pour lire et charger les informations depuis Prices.csv.
  */
 public class PriceService {
+    private static final Logger logger = Logger.getLogger(PriceService.class.getName());
 
+    private String path;
     private static PriceService instance;
     private Set<Portfolio> portfolios;
     private Set<Client> clients;
 
     // Constructeur privé
-    private PriceService() {
+    private PriceService(String path) {
+        this.path = path;
         portfolios = new HashSet<>();
         clients = new HashSet<>();
         try {
@@ -40,9 +45,9 @@ public class PriceService {
     /**
      * @return L'instance unique de PriceService.
      */
-    public static synchronized PriceService getInstance() {
+    public static PriceService getInstance(String path) {
         if (instance == null) {
-            instance = new PriceService();
+            instance = new PriceService(path);
         }
         return instance;
     }
@@ -52,18 +57,26 @@ public class PriceService {
      * Les portefeuilles sont stockés dans un Set.
      */
     public void loadPrices() throws IOException, BadFileContentException {
-        InputStream inputStream = PriceService.class.getClassLoader().getResourceAsStream("Prices.csv");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        logger.setLevel(Level.ALL);
+        logger.info("Lecture du fichier" + path + "/Prices.csv.");
+
+        String file = path + "/Prices.csv";
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+
+        logger.info("Lecture réussite.");
 
         String line = reader.readLine();
 
         if (line.split(",").length != 5) {
+            reader.close();
             throw new BadFileContentException("Le fichier ne contient pas le nombre attendu de colonnes");
         }
 
         while ((line = reader.readLine()) != null) {
             String[] tokens = line.split(",");
             if (tokens.length != 5) {
+                reader.close();
                 throw new BadFileContentException("Le fichier ne contient pas le nombre attendu de colonnes");
             }
 
@@ -103,24 +116,32 @@ public class PriceService {
             }
         }
 
+        reader.close();
     }
 
     /**
      * Charge les informations des produits et clients à partir du Product.csv.
      */
     public void loadProducts() throws IOException, BadFileContentException {
-        InputStream inputStream = PriceService.class.getClassLoader().getResourceAsStream("Product.csv");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        logger.setLevel(Level.ALL);
+        logger.info("Lecture du fichier" + path + "/Product.csv.");
+
+        String file = path + "/Product.csv";
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+
+        logger.info("Lecture réussite.");
 
         String line = reader.readLine();
 
         if (line.split(",").length != 3) {
+            reader.close();
             throw new BadFileContentException("La ligne ne contient pas le nombre attendu de colonnes");
         }
 
         while ((line = reader.readLine()) != null) {
             String[] tokens = line.split(",");
             if (tokens.length != 3) {
+                reader.close();
                 throw new BadFileContentException("Le fichier ne contient pas le nombre attendu de colonnes");
             }
             String productName = tokens[0].trim();
@@ -149,6 +170,7 @@ public class PriceService {
             }
         }
 
+        reader.close();
     }
 
     /**

@@ -3,6 +3,8 @@ package fr.codebusters.valocb.entities;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import fr.codebusters.valocb.parsers.ForexService;
 import lombok.Data;
 
 /**
@@ -43,12 +45,12 @@ public class Client {
     /**
      * @return Le capital total du client en euro.
      */
-    public double capital() {
+    public double capital(ForexService forexService) {
         double totalCapital = 0;
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            totalCapital += product.price() * quantity;
+            totalCapital += product.price(forexService) * quantity;
         }
         return totalCapital;
     }
