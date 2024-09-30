@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Main with arguments",
+            "request": "launch",
+            "mainClass": "fr.codebusters.valocb.Main",
+            "projectName": "valocb",
+            "args": "-o reporting -i src/main/resources"
+        }
+    ]
+}
